@@ -1,10 +1,10 @@
-package com.example.Naruto_DB.principal;
+package com.example.Naruto_DB;
 
 import com.example.Naruto_DB.ninja.NinjaDeGenjutsu;
 import com.example.Naruto_DB.ninja.NinjaDeNinjutsu;
 import com.example.Naruto_DB.ninja.NinjaDeTaijutsu;
 
-public class Principal {
+public class NinjaSimulator {
     public static void main(String[] args) {
         NinjaDeGenjutsu itachi = new NinjaDeGenjutsu("Itachi Uchiha", 21, "Aldeia da Folha", 100);
         itachi.adicionarNovoJutsu("Tsukuyomi");

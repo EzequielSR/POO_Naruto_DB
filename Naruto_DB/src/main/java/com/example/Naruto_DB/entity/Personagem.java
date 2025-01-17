@@ -1,4 +1,4 @@
-package com.example.Naruto_DB;
+package com.example.Naruto_DB.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

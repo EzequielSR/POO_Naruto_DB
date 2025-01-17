@@ -1,5 +1,6 @@
 package com.example.Naruto_DB;
 
+import com.example.Naruto_DB.entity.Personagem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
