@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class NinjaDeNinjutsu extends Personagem implements Ninja {
 
-    public NinjaDeNinjutsu(String nome, int idade, String aldeia, int chakra, int vida){
-        super(nome, idade, aldeia, chakra, vida);
+    public NinjaDeNinjutsu(String nome, int idade, String aldeia, int vida) {
+        super(nome, idade, aldeia, vida);
     }
 
     @Override
@@ -18,6 +18,6 @@ public class NinjaDeNinjutsu extends Personagem implements Ninja {
 
     @Override
     public void desviar(int dano) {
-       super.desviar(dano);
+        super.desviar(dano);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.Naruto_DB.ninja;
 
+import com.example.Naruto_DB.entity.Personagem;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -29,6 +30,17 @@ public class Jutsu {
 
     public String getNome() {
         return nome;
+    }
+
+    public boolean usar(Personagem atacante, Personagem defensor) {
+        if (atacante.getChakra() >= consumoDeChakra) {
+            atacante.setChakra(atacante.getChakra() - consumoDeChakra);
+            defensor.receberDano(dano);
+            return true;
+        } else {
+            System.out.println(atacante.getNome() + " não tem chakra suficiente!");
+            return false;
+        }
     }
 
 }

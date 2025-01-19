@@ -5,8 +5,8 @@ import com.example.Naruto_DB.entity.Personagem;
 import java.util.Random;
 
 public class NinjaDeTaijutsu extends Personagem implements Ninja {
-    public NinjaDeTaijutsu(String nome, int idade, String aldeia, int chakra, int vida){
-        super(nome,idade,aldeia,chakra,vida);
+    public NinjaDeTaijutsu(String nome, int idade, String aldeia, int vida){
+        super(nome,idade,aldeia,vida);
     }
 
     @Override

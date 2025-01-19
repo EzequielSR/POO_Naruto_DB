@@ -20,19 +20,21 @@ public class Personagem {
     private int chakra;
     private int vida;
 
-    public Personagem(String nome, int idade, String aldeia, int chakra, int vida) {
+    public Personagem(String nome, int idade, String aldeia, int vida) {
         this.nome = nome;
         this.idade = idade;
         this.aldeia = aldeia;
-        this.chakra = chakra;
+        this.chakra = 100;
         this.vida = vida;
         this.jutsus = new HashMap<>();
     }
+
     public void adicionarNovoJutsu(String nomeJutsu, Jutsu jutsu) {
-        jutsus.put(nomeJutsu,jutsu);
+        jutsus.put(nomeJutsu, jutsu);
     }
 
     public boolean usarJutsu(String nomeJutsu, Personagem inimigo) {
+
         Jutsu jutsu = jutsus.get(nomeJutsu);
         if (jutsu != null && chakra >= jutsu.getConsumoDeChakra()) {
             chakra -= jutsu.getConsumoDeChakra();
@@ -55,17 +57,28 @@ public class Personagem {
     }
 
     public void receberDano(int dano) {
-        desviar(dano);
+        vida -= dano;
+        if(vida < 0){
+            vida = 0;
+        }
+        System.out.println(getNome() + " recebeu " + dano + " de dano e agora tem " + vida + " de vida.");
     }
 
 
-
-    public boolean estaVivo(){
+    public boolean estaVivo() {
         return vida > 0;
     }
 
-    public String getNome(){
+    public String getNome() {
         return nome;
+    }
+
+    public int getChakra() {
+        return chakra;
+    }
+
+    public void setChakra(int chakra) {
+        this.chakra = chakra;
     }
 
     public void exibirAsInformacoes() {

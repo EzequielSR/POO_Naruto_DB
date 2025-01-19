@@ -5,17 +5,17 @@ import com.example.Naruto_DB.entity.Personagem;
 import java.util.Random;
 
 public class NinjaDeGenjutsu extends Personagem implements Ninja {
-    public NinjaDeGenjutsu(String nome, int idade, String aldeia, int chakra, int vida){
-        super(nome, idade, aldeia, chakra, vida);
+    public NinjaDeGenjutsu(String nome, int idade, String aldeia, int vida) {
+        super(nome, idade, aldeia, vida);
     }
 
     @Override
-    public boolean usarJutsu( String nomeJutsu, Personagem inimigo){
-       return super.usarJutsu(nomeJutsu, inimigo);
+    public boolean usarJutsu(String nomeJutsu, Personagem inimigo) {
+        return super.usarJutsu(nomeJutsu, inimigo);
     }
 
     @Override
-    public void desviar(int dano){
-       super.desviar(dano);
+    public void desviar(int dano) {
+        super.desviar(dano);
     }
 }
