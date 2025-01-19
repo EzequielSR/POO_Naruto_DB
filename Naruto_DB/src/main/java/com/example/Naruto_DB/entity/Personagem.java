@@ -28,81 +28,56 @@ public class Personagem {
         this.vida = vida;
         this.jutsus = new HashMap<>();
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
-    public String getAldeia() {
-        return aldeia;
-    }
-
-    public void setAldeia(String aldeia) {
-        this.aldeia = aldeia;
-    }
-
-    public Map<String, Jutsu> getJutsus() {
-        return jutsus;
-    }
-
-    public void setJutsus(Map<String, Jutsu> jutsus) {
-        this.jutsus = jutsus;
-    }
-
-    public int getChakra() {
-        return chakra;
-    }
-
-    public void setChakra(int chakra) {
-        this.chakra = chakra;
-    }
-
-    public int getVida(){
-        return vida;
-    }
-
-
     public void adicionarNovoJutsu(String nomeJutsu, Jutsu jutsu) {
         jutsus.put(nomeJutsu,jutsu);
     }
 
-    public void aumentarChakra(int quantidade) {
-        chakra += quantidade;
-    }
-
-    public void perderVida(int dano){
-        vida -= dano;
-        if(vida < 0){
-            vida = 0;
+    public boolean usarJutsu(String nomeJutsu, Personagem inimigo) {
+        Jutsu jutsu = jutsus.get(nomeJutsu);
+        if (jutsu != null && chakra >= jutsu.getConsumoDeChakra()) {
+            chakra -= jutsu.getConsumoDeChakra();
+            inimigo.receberDano(jutsu.getDano());
+            System.out.println(nome + " usou " + nomeJutsu + " e causou " + jutsu.getDano() + " de dano!");
+            return true;
+        } else {
+            System.out.println(nome + " não tem chakra suficiente para usar " + nomeJutsu + "!");
+            return false;
         }
     }
+
+    public void desviar(int dano) {
+        if (Math.random() > 0.5) {
+            System.out.println(nome + " desviou do ataque!");
+        } else {
+            vida -= dano;
+            System.out.println(nome + " foi atingido e perdeu " + dano + " de vida!");
+        }
+    }
+
+    public void receberDano(int dano) {
+        desviar(dano);
+    }
+
+
 
     public boolean estaVivo(){
         return vida > 0;
     }
 
-    public boolean podeAtacar(){
-        return chakra > 0;
+    public String getNome(){
+        return nome;
     }
 
     public void exibirAsInformacoes() {
         System.out.println("Nome: " + nome);
         System.out.println("Idade: " + idade);
         System.out.println("Aldeia: " + aldeia);
-        System.out.println("Jutsus: " + jutsus);
+        System.out.println("Jutsus: " + jutsus.keySet());
         System.out.println("Chakra: " + chakra);
         System.out.println("Vida: " + vida);
+    }
+
+    public Map<String, Jutsu> getJutsus() {
+        return jutsus;
     }
 }

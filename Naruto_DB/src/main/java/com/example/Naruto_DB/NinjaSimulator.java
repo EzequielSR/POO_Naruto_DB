@@ -1,5 +1,6 @@
 package com.example.Naruto_DB;
 
+import com.example.Naruto_DB.entity.Personagem;
 import com.example.Naruto_DB.ninja.Jutsu;
 import com.example.Naruto_DB.ninja.NinjaDeGenjutsu;
 import com.example.Naruto_DB.ninja.NinjaDeNinjutsu;
@@ -7,85 +8,69 @@ import com.example.Naruto_DB.ninja.NinjaDeTaijutsu;
 
 public class NinjaSimulator {
     public static void main(String[] args) {
-          NinjaDeTaijutsu RockLee = new NinjaDeTaijutsu("RockLee", 17, "Aldeia da Folha", 150);
-          NinjaDeNinjutsu Sasuke = new NinjaDeNinjutsu("Sasuke", 17, "Aldeia da Folha", 50);
-          NinjaDeGenjutsu Itachi = new NinjaDeGenjutsu("Itachi Uchiha", 21, "Aldeia da Folha", 100);
+        Personagem rockLee = new Personagem("Rock Lee", 17, "Aldeia da Folha", 100, 100);
+        Personagem sasuke = new Personagem("Sasuke Uchiha", 17, "Aldeia da Folha", 100, 100);
+        Personagem itachi = new Personagem("Itachi Uchiha", 21, "Aldeia da Folha", 100, 100);
 
-          RockLee.adicionarNovoJutsu("Oito portões", new Jutsu(100,10));
-          Sasuke.adicionarNovoJutsu("Chidori", new Jutsu(40,60));
-          Itachi.adicionarNovoJutsu("Tsukuyomi", new Jutsu(50,20));
+        rockLee.adicionarNovoJutsu("Oito Portões", new Jutsu("Oito Portões", 100, 10));
+        sasuke.adicionarNovoJutsu("Chidori", new Jutsu("Chidori", 90, 60));
+        itachi.adicionarNovoJutsu("Tsukuyomi", new Jutsu("Tsukuyomi", 50, 20));
 
         System.out.println("\n--- INFORMAÇÕES INICIAIS ---\n");
-          RockLee.exibirAsInformacoes();
+        rockLee.exibirAsInformacoes();
         System.out.println("-----------------------------");
-          Sasuke.exibirAsInformacoes();
+        sasuke.exibirAsInformacoes();
         System.out.println("-----------------------------");
-          Itachi.exibirAsInformacoes();
+        itachi.exibirAsInformacoes();
         System.out.println("-----------------------------");
 
         System.out.println("\n--- BATALHA COMEÇA ---\n");
 
-        RockLee.usarJutsu(Itachi,"Oito portões");
-        Itachi.desviar(100);
-        if(!Itachi.estaVivo()){
-            System.out.println("Itachi foi derrotado!");
-        }
-        System.out.println("-----------------------------");
+        // Batalha entre Rock Lee e Itachi
+        batalha(rockLee, itachi);
 
-
-        if(Itachi.estaVivo()){
-        Itachi.usarJutsu(RockLee, "Tsukuyomi");
-        RockLee.desviar(50);
-            if(!RockLee.estaVivo()){
-                System.out.println("Rock Lee foi derrotado!");
-            }
-
-        System.out.println("-----------------------------");
+        // Se Itachi ainda estiver vivo, batalha entre Itachi e Rock Lee
+        if (itachi.estaVivo()) {
+            batalha(itachi, rockLee);
         }
 
-        if(RockLee.estaVivo()){
-        Sasuke.usarJutsu(RockLee, "Chidori");
-        RockLee.desviar(40);
-        if(!RockLee.estaVivo()){
-            System.out.println("Rock Lee foi derrotado!");
-        }
-
-        System.out.println("-----------------------------");
+        // Se Rock Lee ainda estiver vivo, batalha entre Sasuke e Rock Lee
+        if (rockLee.estaVivo()) {
+            batalha(sasuke, rockLee);
         }
 
         System.out.println("\n--- INFORMAÇÕES FINAIS ---\n");
-        RockLee.exibirAsInformacoes();
+        rockLee.exibirAsInformacoes();
         System.out.println("-----------------------------");
-        Sasuke.exibirAsInformacoes();
+        sasuke.exibirAsInformacoes();
         System.out.println("-----------------------------");
-        Itachi.exibirAsInformacoes();
+        itachi.exibirAsInformacoes();
         System.out.println("-----------------------------");
+    }
 
-//        NinjaDeGenjutsu itachi = new NinjaDeGenjutsu("Itachi Uchiha", 21, "Aldeia da Folha", 100);
-//        itachi.adicionarNovoJutsu("Tsukuyomi");
-//        itachi.aumentarChakra(20);
-//        itachi.exibirAsInformacoes();
-//        itachi.usarJutsu();
-//        itachi.desviar();
-//
-//        System.out.println("\n##################################\n");
-//
-//        NinjaDeNinjutsu sasuke = new NinjaDeNinjutsu("Sasuke Uchiha", 17, "Aldeia da Folha", 100);
-//        sasuke.adicionarNovoJutsu("Chidori");
-//        sasuke.aumentarChakra(30);
-//        sasuke.exibirAsInformacoes();
-//        sasuke.usarJutsu();
-//        sasuke.desviar();
-//
-//        System.out.println("\n##################################\n");
-//
-//
-//        NinjaDeTaijutsu rockLee = new NinjaDeTaijutsu("Rock Lee", 17, "Aldeia da Folha", 100);
-//        rockLee.adicionarNovoJutsu("Oito Portões");
-//        rockLee.adicionarNovoJutsu("Leaf Whirlwind");
-//        rockLee.aumentarChakra(50);
-//        rockLee.exibirAsInformacoes();
-//        rockLee.usarJutsu();
-//        rockLee.desviar();
+
+    private static void batalha(Personagem atacante, Personagem defensor) {
+        String nomeJutsu = atacante.getJutsus().keySet().iterator().next();
+        Jutsu jutsu = atacante.getJutsus().get(nomeJutsu);
+
+        if (jutsu != null) {
+            String NomeDoJutsu = atacante.getJutsus().keySet().iterator().next();
+            Jutsu Jutsu = atacante.getJutsus().get(NomeDoJutsu);
+
+            if (Jutsu != null) {
+                System.out.println(atacante.getNome() + " ataca " + defensor.getNome() + " com " + Jutsu.getNome() + "!");
+
+                // Tentativa de desvio
+                defensor.desviar(Jutsu.getDano());
+
+                // Verifica se o defensor foi atingido
+                if (!defensor.estaVivo()) {
+                    System.out.println(defensor.getNome() + " foi derrotado!");
+                }
+            } else {
+                System.out.println("Jutsu não encontrado para " + atacante.getNome());
+            }
+            System.out.println("-----------------------------");
+        }
     }
 }
