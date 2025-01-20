@@ -5,8 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Entity
 public class Personagem {
@@ -20,13 +22,17 @@ public class Personagem {
     private int chakra;
     private int vida;
 
+    public Personagem() {
+        this.jutsus = new HashMap<>();
+        this.chakra = 100;
+    }
+
     public Personagem(String nome, int idade, String aldeia, int vida) {
+        this();
         this.nome = nome;
         this.idade = idade;
         this.aldeia = aldeia;
-        this.chakra = 100;
         this.vida = vida;
-        this.jutsus = new HashMap<>();
     }
 
     public void adicionarNovoJutsu(String nomeJutsu, Jutsu jutsu) {
@@ -34,12 +40,18 @@ public class Personagem {
     }
 
     public boolean usarJutsu(String nomeJutsu, Personagem inimigo) {
+        Optional<Jutsu> jutsuOpt = Optional.ofNullable(jutsus.get(nomeJutsu));
 
-        Jutsu jutsu = jutsus.get(nomeJutsu);
-        if (jutsu != null && chakra >= jutsu.getConsumoDeChakra()) {
+        if (jutsuOpt.isEmpty()) {
+            System.out.println(nome + " não conhece o jutsu " + nomeJutsu + "!");
+            return false;
+        }
+
+        Jutsu jutsu = jutsuOpt.get();
+        if (chakra >= jutsu.getConsumoDeChakra()) {
             chakra -= jutsu.getConsumoDeChakra();
             inimigo.receberDano(jutsu.getDano());
-            System.out.println(nome + " usou " + nomeJutsu + " e causou " + jutsu.getDano() + " de dano!");
+            System.out.println(nome + " usou " + nomeJutsu + " em " + inimigo.getNome());
             return true;
         } else {
             System.out.println(nome + " não tem chakra suficiente para usar " + nomeJutsu + "!");
@@ -47,27 +59,23 @@ public class Personagem {
         }
     }
 
-    public void desviar(int dano) {
-        if (Math.random() > 0.5) {
-            System.out.println(nome + " desviou do ataque!");
-        } else {
-            vida -= dano;
-            System.out.println(nome + " foi atingido e perdeu " + dano + " de vida!");
-        }
-    }
-
     public void receberDano(int dano) {
-        vida -= dano;
-        if(vida < 0){
-            vida = 0;
-        }
+        vida = Math.max(vida - dano, 0);
         System.out.println(getNome() + " recebeu " + dano + " de dano e agora tem " + vida + " de vida.");
     }
-
 
     public boolean estaVivo() {
         return vida > 0;
     }
+
+    public void desviar(int dano) {
+        if (Math.random() > 0.5) {
+            System.out.println(nome + " desviou do ataque!");
+        } else {
+            receberDano(dano);
+        }
+    }
+
 
     public String getNome() {
         return nome;
@@ -77,8 +85,23 @@ public class Personagem {
         return chakra;
     }
 
+    public Map<String, Jutsu> getJutsus() {
+        return Collections.unmodifiableMap(jutsus);
+    }
+
+
     public void setChakra(int chakra) {
-        this.chakra = chakra;
+        if (chakra < 0) {
+            throw new IllegalArgumentException("Chakra não pode ser negativo.");
+        }
+        this.chakra = Math.min(chakra, 100);
+    }
+
+    public void aumentarChakra(int quantidade) {
+        if (quantidade < 0) {
+            throw new IllegalArgumentException("Quantidade a aumentar não pode ser negativa.");
+        }
+        setChakra(this.chakra + quantidade);
     }
 
     public void exibirAsInformacoes() {
@@ -90,7 +113,4 @@ public class Personagem {
         System.out.println("Vida: " + vida);
     }
 
-    public Map<String, Jutsu> getJutsus() {
-        return jutsus;
-    }
 }

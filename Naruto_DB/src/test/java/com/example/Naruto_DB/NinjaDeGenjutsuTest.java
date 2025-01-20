@@ -1,11 +1,11 @@
 package com.example.Naruto_DB;
 
+import com.example.Naruto_DB.ninja.Jutsu;
 import com.example.Naruto_DB.ninja.NinjaDeGenjutsu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class NinjaDeGenjutsuTest {
     private NinjaDeGenjutsu ninja;
@@ -16,19 +16,10 @@ public class NinjaDeGenjutsuTest {
     }
 
     @Test
-    public void testUsarJutsu() {
-        ninja.usarJutsu();
-    }
-
-    @Test
-    public void testDesviar() {
-        ninja.desviar();
-    }
-
-    @Test
     public void testAdicionarJutsu() {
-        ninja.adicionarNovoJutsu("Tsukuyomi");
-        assertTrue(ninja.getJutsus().contains("Tsukuyomi"));
+        Jutsu jutsu = new Jutsu("Tsukuyomi",50,20);
+        ninja.adicionarNovoJutsu("Tsukuyomi", jutsu);
+        assertNotNull(ninja.getJutsus().get("Tsukuyomi"));
     }
 
     @Test

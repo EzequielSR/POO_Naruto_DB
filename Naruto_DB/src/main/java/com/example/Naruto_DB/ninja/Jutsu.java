@@ -14,7 +14,16 @@ public class Jutsu {
     private int dano;
     private int consumoDeChakra;
 
+    public Jutsu(){}
+
     public Jutsu(String nome, int dano, int consumoDeChakra) {
+        if (dano < 0) {
+            throw new IllegalArgumentException("Dano não pode ser negativo.");
+        }
+        if (consumoDeChakra < 0) {
+            throw new IllegalArgumentException("Consumo de chakra não pode ser negativo.");
+        }
+
         this.nome = nome;
         this.dano = dano;
         this.consumoDeChakra = consumoDeChakra;

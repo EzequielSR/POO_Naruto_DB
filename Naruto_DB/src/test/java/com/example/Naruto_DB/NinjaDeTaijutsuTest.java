@@ -1,11 +1,11 @@
 package com.example.Naruto_DB;
 
+import com.example.Naruto_DB.ninja.Jutsu;
 import com.example.Naruto_DB.ninja.NinjaDeTaijutsu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class NinjaDeTaijutsuTest {
     private NinjaDeTaijutsu ninja;
@@ -16,19 +16,10 @@ public class NinjaDeTaijutsuTest {
     }
 
     @Test
-    public void testUsarJutsu() {
-        ninja.usarJutsu();
-    }
-
-    @Test
-    public void testDesviar() {
-        ninja.desviar();
-    }
-
-    @Test
     public void testAdicionarJutsu() {
-        ninja.adicionarNovoJutsu("Dynamic Entry");
-        assertTrue(ninja.getJutsus().contains("Dynamic Entry"));
+        Jutsu jutsu = new Jutsu("Dynamic Entry", 50,50);
+        ninja.adicionarNovoJutsu("Dynamic Entry", jutsu);
+        assertNotNull(ninja.getJutsus().get("Dynamic Entry"));
     }
 
     @Test

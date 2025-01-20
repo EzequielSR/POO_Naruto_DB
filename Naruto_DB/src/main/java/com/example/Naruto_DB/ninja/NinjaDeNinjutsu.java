@@ -2,8 +2,6 @@ package com.example.Naruto_DB.ninja;
 
 import com.example.Naruto_DB.entity.Personagem;
 
-import java.util.Random;
-
 public class NinjaDeNinjutsu extends Personagem implements Ninja {
 
     public NinjaDeNinjutsu(String nome, int idade, String aldeia, int vida) {
@@ -11,7 +9,7 @@ public class NinjaDeNinjutsu extends Personagem implements Ninja {
     }
 
     @Override
-    public boolean usarJutsu(String nomeJutsu, Personagem inimigo) {
+    public boolean usarJutsu(String nomeJutsu, com.example.Naruto_DB.entity.Personagem inimigo) {
         return super.usarJutsu(nomeJutsu, inimigo);
 
     }

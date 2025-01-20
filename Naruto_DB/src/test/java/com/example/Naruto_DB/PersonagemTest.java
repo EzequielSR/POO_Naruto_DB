@@ -1,11 +1,11 @@
 package com.example.Naruto_DB;
 
 import com.example.Naruto_DB.entity.Personagem;
+import com.example.Naruto_DB.ninja.Jutsu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PersonagemTest {
     private Personagem personagem;
@@ -17,15 +17,20 @@ public class PersonagemTest {
 
     @Test
     void testAdicionarJutsu() {
-        personagem.adicionarNovoJutsu("Rasengan");
-        assertEquals(1, personagem.getJutsus().size());
-        assertTrue(personagem.getJutsus().contains("Rasengan"));
+        Jutsu jutsu = new Jutsu("Rasengan", 80, 50);
+        personagem.adicionarNovoJutsu("Rasengan",jutsu);
+        assertNotNull(personagem.getJutsus().get("Rasengan"));
+        assertEquals(jutsu,personagem.getJutsus().get("Rasengan"));
     }
 
     @Test
     void testAumentarChakra() {
         personagem.aumentarChakra(50);
-        assertEquals(150, personagem.getChakra());
+        assertEquals(100, personagem.getChakra());
+
+        personagem.setChakra(80);
+        personagem.aumentarChakra(30);
+        assertEquals(100, personagem.getChakra());
     }
 
     @Test

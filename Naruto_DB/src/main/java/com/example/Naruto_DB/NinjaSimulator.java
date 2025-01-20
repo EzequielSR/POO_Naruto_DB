@@ -1,16 +1,13 @@
 package com.example.Naruto_DB;
 
 import com.example.Naruto_DB.entity.Personagem;
-import com.example.Naruto_DB.ninja.Jutsu;
-import com.example.Naruto_DB.ninja.NinjaDeGenjutsu;
-import com.example.Naruto_DB.ninja.NinjaDeNinjutsu;
-import com.example.Naruto_DB.ninja.NinjaDeTaijutsu;
+import com.example.Naruto_DB.ninja.*;
 
 public class NinjaSimulator {
     public static void main(String[] args) {
-        Personagem rockLee = new Personagem("Rock Lee", 17, "Aldeia da Folha", 100);
-        Personagem sasuke = new Personagem("Sasuke Uchiha", 17, "Aldeia da Folha", 100);
-        Personagem itachi = new Personagem("Itachi Uchiha", 21, "Aldeia da Folha", 100);
+        NinjaDeTaijutsu rockLee = new NinjaDeTaijutsu("Rock Lee", 17, "Aldeia da Folha", 100);
+        NinjaDeNinjutsu sasuke = new NinjaDeNinjutsu("Sasuke Uchiha", 17, "Aldeia da Folha", 100);
+        NinjaDeGenjutsu itachi = new NinjaDeGenjutsu("Itachi Uchiha", 21, "Aldeia da Folha", 100);
 
         rockLee.adicionarNovoJutsu("Oito Portões", new Jutsu("Oito Portões", 100, 100));
         sasuke.adicionarNovoJutsu("Chidori", new Jutsu("Chidori", 90, 60));
@@ -26,21 +23,16 @@ public class NinjaSimulator {
 
         System.out.println("\n--- BATALHA COMEÇA ---\n");
 
-
-        batalha(rockLee, itachi);
+        Batalha batalha = new Batalha();
+        batalha.iniciarBatalha(rockLee,itachi);
 
 
         if (itachi.estaVivo()) {
-            batalha(itachi, rockLee);
+            batalha.iniciarBatalha(itachi, rockLee);
         }
-
 
         if (rockLee.estaVivo()) {
-            batalha(sasuke, rockLee);
-        }
-
-        if (sasuke.estaVivo()) {
-            batalha(sasuke, rockLee);
+            batalha.iniciarBatalha(sasuke, rockLee);
         }
 
         System.out.println("\n--- INFORMAÇÕES FINAIS ---\n");
@@ -49,29 +41,6 @@ public class NinjaSimulator {
         sasuke.exibirAsInformacoes();
         System.out.println("-----------------------------");
         itachi.exibirAsInformacoes();
-        System.out.println("-----------------------------");
-    }
-
-
-    private static void batalha(Personagem atacante, Personagem defensor) {
-        String nomeJutsu = atacante.getJutsus().keySet().iterator().next();
-        Jutsu jutsu = atacante.getJutsus().get(nomeJutsu);
-
-        if (jutsu != null) {
-            System.out.println(atacante.getNome() + " ataca " + defensor.getNome() + " com " + jutsu.getNome() + "!");
-
-            if (Math.random() < 0.5) {
-                System.out.println(defensor.getNome() + " desviou do ataque!");
-            } else {
-                if (jutsu.usar(atacante, defensor)) {
-                    if (!defensor.estaVivo()) {
-                        System.out.println(defensor.getNome() + " foi derrotado!");
-                    }
-                }
-            }
-        } else {
-            System.out.println("Jutsu não encontrado para " + atacante.getNome());
-        }
         System.out.println("-----------------------------");
     }
 }
