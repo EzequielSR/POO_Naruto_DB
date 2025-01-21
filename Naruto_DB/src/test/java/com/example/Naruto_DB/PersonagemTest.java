@@ -18,9 +18,9 @@ public class PersonagemTest {
     @Test
     void testAdicionarJutsu() {
         Jutsu jutsu = new Jutsu("Rasengan", 80, 50);
-        personagem.adicionarNovoJutsu("Rasengan",jutsu);
+        personagem.adicionarNovoJutsu("Rasengan", jutsu);
         assertNotNull(personagem.getJutsus().get("Rasengan"));
-        assertEquals(jutsu,personagem.getJutsus().get("Rasengan"));
+        assertEquals(jutsu, personagem.getJutsus().get("Rasengan"));
     }
 
     @Test

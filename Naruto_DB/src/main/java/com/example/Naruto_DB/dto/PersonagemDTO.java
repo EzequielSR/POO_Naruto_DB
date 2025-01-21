@@ -77,7 +77,8 @@ public class PersonagemDTO {
         this.jutsus = jutsus;
     }
 
-    public PersonagemDTO(){}
+    public PersonagemDTO() {
+    }
 
 
 }

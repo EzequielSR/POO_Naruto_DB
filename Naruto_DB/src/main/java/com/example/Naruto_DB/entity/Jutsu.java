@@ -15,7 +15,8 @@ public class Jutsu {
     @JoinColumn(name = "personagem_id", nullable = false)
     private Personagem personagem;
 
-    public Jutsu(){}
+    public Jutsu() {
+    }
 
     public Jutsu(String nome, int dano, int consumoDeChakra) {
         if (dano < 0) {

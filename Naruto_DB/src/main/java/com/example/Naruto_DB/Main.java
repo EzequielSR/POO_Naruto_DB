@@ -24,7 +24,7 @@ public class Main {
         System.out.println("\n--- BATALHA COMEÇA ---\n");
 
         Batalha batalha = new Batalha();
-        batalha.iniciarBatalha(rockLee,itachi);
+        batalha.iniciarBatalha(rockLee, itachi);
 
 
         if (itachi.estaVivo()) {

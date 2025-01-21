@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class NarutoService {
+public class PersonagemService {
     @Autowired
     private PersonagemRepository personagemRepository;
 
@@ -26,7 +26,8 @@ public class NarutoService {
         Personagem novoPersonagem = personagemRepository.save(personagem);
         return new PersonagemDTO(novoPersonagem.getId(), novoPersonagem.getNome(), novoPersonagem.getIdade(), novoPersonagem.getAldeia(), novoPersonagem.getChakra(), novoPersonagem.getVida(), novoPersonagem.getJutsus().values().stream()
                 .map(jutsu -> new JutsuDTO(jutsu.getId(), jutsu.getNome(), jutsu.getDano(), jutsu.getConsumoDeChakra()))
-                .collect(Collectors.toMap(JutsuDTO::getNome, jutsuDTO -> jutsuDTO))); }
+                .collect(Collectors.toMap(JutsuDTO::getNome, jutsuDTO -> jutsuDTO)));
+    }
 
     public JutsuDTO criarJutsu(Long personagemId, JutsuDTO jutsuDTO) {
         Personagem personagem = personagemRepository.findById(personagemId)

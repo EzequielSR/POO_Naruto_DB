@@ -36,7 +36,6 @@ public class BatalhaTest {
         Batalha batalha = new Batalha();
         batalha.iniciarBatalha(ninja1, ninja2);
 
-        // Verifica se a saída contém mensagens esperadas
         String output = outputStreamCaptor.toString().trim();
         assertTrue(output.contains("Rock Lee ataca Sasuke Uchiha com Oito Portões!") ||
                 output.contains("Sasuke Uchiha ataca Rock Lee com Chidori!"));
