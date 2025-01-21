@@ -12,6 +12,7 @@ Anexo 📎: [Naruto I 5.docx](https://docs.google.com/document/d/1YQYouhWhM5mtoP
 - **Spring Boot** (versão 2.x ou superior) 🚀
 - **Banco de dados H2** para persistência 🗄️
 - **Spring Data JPA** para integração com o banco de dados 🔗
+- **Spring Boot DevTools** para recarregamento automático durante o desenvolvimento 🔄
 - **Validações básicas** ✔️ e **tratamento de exceções** ⚠️ implementados
 - **API RESTful** com respostas em formato **JSON** 🌐
 
@@ -36,6 +37,7 @@ A aplicação inclui testes para garantir o funcionamento correto dos métodos e
 - **NinjaDeTaijutsuTest**: Testes relacionados a ninjas da classe Taijutsu.
 - **NinjaDeNinjutsuTest**: Testes relacionados a ninjas da classe Ninjutsu.
 - **PersonagemTest**: Testes gerais para validar os atributos e métodos da classe `Personagem`.
+- **BatalhaTest**: Testes para a lógica de batalha.
 
 ---
 
@@ -45,6 +47,7 @@ A aplicação inclui testes para garantir o funcionamento correto dos métodos e
 - **Spring Boot**: Framework para desenvolvimento de aplicações Java 🚀
 - **Spring Data JPA**: Biblioteca para integração com o banco de dados 🔗
 - **H2 Database**: Banco de dados em memória para persistência de dados 🗄️
+- **Spring Boot DevTools**: Ferramenta para recarregamento automático durante o desenvolvimento 🔄
 - **JUnit 5**: Framework para testes unitários 🧪
 
 ---
@@ -56,9 +59,12 @@ A estrutura do projeto está organizada da seguinte forma:
 ```plaintext
 src/main/java/com/example/Naruto_DB
 ├── entity
-│   └── Personagem.java
+│   ├── Jutsu.java
+│   ├── Personagem.java
+│   └── PersonagemJutsu.java
 |
 ├── ninja
+│   ├── Batalha.java
 │   ├── Ninja.java
 │   ├── NinjaDeGenjutsu.java
 │   ├── NinjaDeNinjutsu.java
@@ -67,14 +73,18 @@ src/main/java/com/example/Naruto_DB
 ├── repository
 │   └── PersonagemRepository
 |
+├── service
+│   └── PersonagemService
+|
 ├── Application.java
-├── NinjaSimulator.java
+├── Main.java
 |
 ├── resources
 └── application.properties
 ___________________________________________
 
 src/test/java/com/example/Naruto_DB
+    ├── BatalhaTest.java
     ├── NinjaDeGenjutsuTest.java
     ├── NinjaDeNinjutsu.java
     ├── NinjaDeTaijutsuTest.java
