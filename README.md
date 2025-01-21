@@ -33,6 +33,18 @@ Anexo 📎: [Naruto I 5.docx](https://docs.google.com/document/d/1YQYouhWhM5mtoP
 
 ---
 
+---
+
+## Data Transfer Object (DTO) 📦
+
+O projeto utiliza **DTOs (Data Transfer Objects)** para transferir dados entre as camadas de controle e serviço. Os DTOs ajudam a encapsular os dados que são enviados e recebidos pela API, garantindo que apenas as informações necessárias sejam expostas. Isso melhora a segurança e a eficiência da aplicação.
+
+### Exemplos de DTOs Criados:
+- **PersonagemDTO**: Representa os dados de um personagem, incluindo atributos como nome, idade, aldeia, chakra, vida e jutsus.
+- **JutsuDTO**:Representa os dados de um jutsu, incluindo atributos como nome, dano e consumo de chakra.
+
+---
+
 ## Testes 🧪
 
 A aplicação inclui testes para garantir o funcionamento correto dos métodos e operações dos ninjas. Os testes estão localizados na pasta `src/test/java` e incluem as seguintes classes:
@@ -63,6 +75,26 @@ A aplicação inclui testes para garantir o funcionamento correto dos métodos e
     <version>2.1.0</version>
    </dependency>
   ```
+
+---
+
+---
+
+## Documentação da API com Swagger 📜
+
+A aplicação utiliza o **Springdoc OpenAPI** para fornecer uma interface interativa para a documentação da API. Após iniciar o projeto, você pode acessar a documentação em:
+
+
+
+  ```bash
+   http://localhost:8080/swagger-ui/index.html#/
+  ```
+
+E a especificação da API em formato JSON pode ser acessada em:
+
+ ```bash
+  http://localhost:8080/v3/api-docs
+ ```
 
 ---
 
@@ -112,6 +144,25 @@ src/test/java/com/example/Naruto_DB
     └── PersonagemTest.java
 
 ```
+
+---
+
+## Aplicação de CRUD no Projeto 🛠
+
+A aplicação implementa operações de CRUD (Create, Read, Update, Delete) para gerenciar personagens (Ninjas) e suas habilidades (Jutsus). As operações são realizadas através de endpoints RESTful, que facilitam a comunicação entre o cliente e o servidor.
+
+##Endpoints Principais:
+
+* **POST /api/personagens**: Cria um novo ninja.
+* **GET /api/personagens**: Lista todos os ninjas.
+* **GET /api/personagens/{id}**: Obtém detalhes de um ninja específico.
+* **PUT /api/personagens/{id}**: Atualiza as informações de um ninja.
+* **DELETE /api/personagens/{id}**: Remove um ninja do sistema.
+* **POST /api/personagens/{personagemId}/jutsus**: Cria um novo jutsu para um ninja.
+* **DELETE /api/personagens/{personagemId}/jutsus/{jutsuNome}**: Remove um jutsu de um ninja.
+
+
+
 ---
 
 ## Instruções para Rodar o Projeto 🔧
