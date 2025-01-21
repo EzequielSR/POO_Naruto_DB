@@ -26,7 +26,7 @@ public class Batalha {
         }
 
         String nomeJutsu = jutsusDisponiveis.get((int) (Math.random() * jutsusDisponiveis.size()));
-        Optional<Jutsu> jutsuOpt = Optional.ofNullable(atacante.getJutsus().get(nomeJutsu).getJutsu());
+        Optional<Jutsu> jutsuOpt = Optional.ofNullable(atacante.getJutsus().get(nomeJutsu));
 
         if (jutsuOpt.isPresent()) {
             Jutsu jutsu = jutsuOpt.get();

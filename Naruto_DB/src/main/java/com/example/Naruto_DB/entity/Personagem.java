@@ -17,7 +17,7 @@ public class Personagem {
     private int vida;
 
     @OneToMany(mappedBy = "personagem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Map<String, PersonagemJutsu> jutsus = new HashMap<>();
+    private Map<String, Jutsu> jutsus = new HashMap<>();
 
     public Personagem() {
         this.chakra = 100;
@@ -32,19 +32,18 @@ public class Personagem {
     }
 
     public void adicionarNovoJutsu(String nomeJutsu, Jutsu jutsu) {
-        PersonagemJutsu personagemJutsu = new PersonagemJutsu(this, jutsu, nomeJutsu);
-        jutsus.put(nomeJutsu, personagemJutsu);
+        jutsu.setPersonagem(this);
+        jutsus.put(nomeJutsu, jutsu);
     }
 
     public boolean usarJutsu(String nomeJutsu, Personagem inimigo) {
-        PersonagemJutsu personagemJutsu = jutsus.get(nomeJutsu);
+        Jutsu jutsu = jutsus.get(nomeJutsu);
 
-        if (personagemJutsu == null) {
+        if (jutsu == null) {
             System.out.println(nome + " não conhece o jutsu " + nomeJutsu + "!");
             return false;
         }
 
-        Jutsu jutsu = personagemJutsu.getJutsu();
         if (chakra >= jutsu.getConsumoDeChakra()) {
             chakra -= jutsu.getConsumoDeChakra();
             inimigo.receberDano(jutsu.getDano());
@@ -82,7 +81,47 @@ public class Personagem {
         return chakra;
     }
 
-    public Map<String, PersonagemJutsu> getJutsus() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public String getAldeia() {
+        return aldeia;
+    }
+
+    public void setAldeia(String aldeia) {
+        this.aldeia = aldeia;
+    }
+
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
+    public void setJutsus(Map<String, Jutsu> jutsus) {
+        this.jutsus = jutsus;
+    }
+
+    public Map<String, Jutsu> getJutsus() {
         return new HashMap<>(jutsus);
     }
 
