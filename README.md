@@ -16,17 +16,20 @@ Anexo 📎: [Naruto I 5.docx](https://docs.google.com/document/d/1YQYouhWhM5mtoP
 - **Spring Boot DevTools** para recarregamento automático durante o desenvolvimento 🔄
 - **Validações básicas** ✔️ e **tratamento de exceções** ⚠️ implementados
 - **API RESTful** com respostas em formato **JSON** 🌐
+- **Swagger** para documentação da API e interface interativa 🌟
+
 
 ---
 
 ## Funcionalidades 🛠️
 
 ### Funcionalidades Implementadas
-- **Exibir as informações de cada ninja** 🖼️
-- **Mostrar o nome dos jutsus de cada ninja** 🌀
-- **Aumentar o Chakra do ninja** ⚡
-- **Mostrar a idade do ninja** 🎂
-- **Exibir os atributos de ninjas das classes Genjutsu, Ninjutsu e Taijutsu** 🔥
+- **Gerenciar personagens (Ninjas)**: Criar, listar, buscar, atualizar e deletar ninjas.
+- **Gerenciar habilidades (Jutsus)**: Criar, listar e deletar jutsus associados a cada ninja.
+- **Exibir informações detalhadas de cada ninja**:  Nome, idade, aldeia, chakra e vida.
+- **Mostrar os jutsus de cada ninja**:  Listar os jutsus disponíveis para cada personagem.
+- **Aumentar o Chakra do ninja**:  Implementar lógica para aumentar o chakra.
+- **Exibir atributos de ninjas das classes Genjutsu, Ninjutsus e Taijutsus**:  Diferenciar ninjas por suas habilidades.
 
 ---
 
@@ -34,11 +37,11 @@ Anexo 📎: [Naruto I 5.docx](https://docs.google.com/document/d/1YQYouhWhM5mtoP
 
 A aplicação inclui testes para garantir o funcionamento correto dos métodos e operações dos ninjas. Os testes estão localizados na pasta `src/test/java` e incluem as seguintes classes:
 
-- **NinjaDeGenjutsuTest**: Testes relacionados a ninjas da classe Genjutsu.
-- **NinjaDeTaijutsuTest**: Testes relacionados a ninjas da classe Taijutsu.
-- **NinjaDeNinjutsuTest**: Testes relacionados a ninjas da classe Ninjutsu.
+- **PersonagemTests**: Testes para validar a lógica de negócios do serviço de personagens.
+- **PersonagemControllerTests**:  Testes para validar a API REST do controlador de personagens.
+- **BatalhaTest**: Testes para a lógica de batalha (se aplicável).
 - **PersonagemTest**: Testes gerais para validar os atributos e métodos da classe `Personagem`.
-- **BatalhaTest**: Testes para a lógica de batalha.
+- **NinjaDeGenjutsuTest,NinjaDeTaijutsuTest, NinjaDeNinjutsuTest** : Testes relacionados a ninjas de diferentes classes.
 
 ---
 
@@ -50,6 +53,16 @@ A aplicação inclui testes para garantir o funcionamento correto dos métodos e
 - **H2 Database**: Banco de dados em memória para persistência de dados 🗄️
 - **Spring Boot DevTools**: Ferramenta para recarregamento automático durante o desenvolvimento 🔄
 - **JUnit 5**: Framework para testes unitários 🧪
+- **Mockito**: Biblioteca para simulação de objetos em testes 🧪
+- **Springdoc OpenAPI Starter WebMVC UI**: Para documentação da API e interface Swagger 🌟
+
+  ```xml
+   <dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <version>2.1.0</version>
+   </dependency>
+  ```
 
 ---
 
@@ -61,8 +74,12 @@ A estrutura do projeto está organizada da seguinte forma:
 src/main/java/com/example/Naruto_DB
 ├── entity
 │   ├── Jutsu.java
-│   ├── Personagem.java
-│   └── PersonagemJutsu.java
+│   └── Personagem.java
+|
+|
+├── dto
+│   ├── JutsuDTO.java
+│   └── PersonagemDTO.java
 |
 ├── ninja
 │   ├── Batalha.java
@@ -72,6 +89,7 @@ src/main/java/com/example/Naruto_DB
 │   └── NinjaDeTaijutsu.java
 |
 ├── repository
+│   ├── JutsuRepository
 │   └── PersonagemRepository
 |
 ├── service
@@ -89,6 +107,8 @@ src/test/java/com/example/Naruto_DB
     ├── NinjaDeGenjutsuTest.java
     ├── NinjaDeNinjutsu.java
     ├── NinjaDeTaijutsuTest.java
+    ├── PersonagemControllerTests.java
+    ├── PersonagemServiceTests.java
     └── PersonagemTest.java
 
 ```
