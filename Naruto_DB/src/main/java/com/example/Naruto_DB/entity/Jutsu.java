@@ -1,18 +1,19 @@
-package com.example.Naruto_DB.ninja;
+package com.example.Naruto_DB.entity;
 
-import com.example.Naruto_DB.entity.Personagem;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Jutsu {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private int dano;
     private int consumoDeChakra;
+
+    @ManyToOne
+    @JoinColumn(name = "personagem_id", nullable = false)
+    private Personagem personagem;
 
     public Jutsu(){}
 
@@ -39,6 +40,22 @@ public class Jutsu {
 
     public String getNome() {
         return nome;
+    }
+
+    public Personagem getPersonagem() {
+        return personagem;
+    }
+
+    public void setPersonagem(Personagem personagem) {
+        this.personagem = personagem;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public boolean usar(Personagem atacante, Personagem defensor) {

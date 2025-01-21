@@ -1,5 +1,6 @@
 package com.example.Naruto_DB.ninja;
 
+import com.example.Naruto_DB.entity.Jutsu;
 import com.example.Naruto_DB.entity.Personagem;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class Batalha {
         }
 
         String nomeJutsu = jutsusDisponiveis.get((int) (Math.random() * jutsusDisponiveis.size()));
-        Optional<Jutsu> jutsuOpt = Optional.ofNullable(atacante.getJutsus().get(nomeJutsu));
+        Optional<Jutsu> jutsuOpt = Optional.ofNullable(atacante.getJutsus().get(nomeJutsu).getJutsu());
 
         if (jutsuOpt.isPresent()) {
             Jutsu jutsu = jutsuOpt.get();

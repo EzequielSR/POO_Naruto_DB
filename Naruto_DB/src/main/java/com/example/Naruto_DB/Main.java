@@ -1,9 +1,9 @@
 package com.example.Naruto_DB;
 
-import com.example.Naruto_DB.entity.Personagem;
+import com.example.Naruto_DB.entity.Jutsu;
 import com.example.Naruto_DB.ninja.*;
 
-public class NinjaSimulator {
+public class Main {
     public static void main(String[] args) {
         NinjaDeTaijutsu rockLee = new NinjaDeTaijutsu("Rock Lee", 17, "Aldeia da Folha", 100);
         NinjaDeNinjutsu sasuke = new NinjaDeNinjutsu("Sasuke Uchiha", 17, "Aldeia da Folha", 100);

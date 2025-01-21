@@ -1,29 +1,25 @@
 package com.example.Naruto_DB.entity;
 
-import com.example.Naruto_DB.ninja.Jutsu;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Entity
 public class Personagem {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private int idade;
     private String aldeia;
-    private Map<String, Jutsu> jutsus;
     private int chakra;
     private int vida;
 
+    @OneToMany(mappedBy = "personagem", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Map<String, PersonagemJutsu> jutsus = new HashMap<>();
+
     public Personagem() {
-        this.jutsus = new HashMap<>();
         this.chakra = 100;
     }
 
@@ -36,18 +32,19 @@ public class Personagem {
     }
 
     public void adicionarNovoJutsu(String nomeJutsu, Jutsu jutsu) {
-        jutsus.put(nomeJutsu, jutsu);
+        PersonagemJutsu personagemJutsu = new PersonagemJutsu(this, jutsu, nomeJutsu);
+        jutsus.put(nomeJutsu, personagemJutsu);
     }
 
     public boolean usarJutsu(String nomeJutsu, Personagem inimigo) {
-        Optional<Jutsu> jutsuOpt = Optional.ofNullable(jutsus.get(nomeJutsu));
+        PersonagemJutsu personagemJutsu = jutsus.get(nomeJutsu);
 
-        if (jutsuOpt.isEmpty()) {
+        if (personagemJutsu == null) {
             System.out.println(nome + " não conhece o jutsu " + nomeJutsu + "!");
             return false;
         }
 
-        Jutsu jutsu = jutsuOpt.get();
+        Jutsu jutsu = personagemJutsu.getJutsu();
         if (chakra >= jutsu.getConsumoDeChakra()) {
             chakra -= jutsu.getConsumoDeChakra();
             inimigo.receberDano(jutsu.getDano());
@@ -85,8 +82,8 @@ public class Personagem {
         return chakra;
     }
 
-    public Map<String, Jutsu> getJutsus() {
-        return Collections.unmodifiableMap(jutsus);
+    public Map<String, PersonagemJutsu> getJutsus() {
+        return new HashMap<>(jutsus);
     }
 
 
