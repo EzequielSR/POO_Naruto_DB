@@ -3,6 +3,7 @@
 Este repositório contém um projeto de implementação com Spring Boot que simula ninjas do universo de Naruto. Utilizando os conceitos de Programação Orientada a Objetos (POO), o sistema gerencia personagens (Ninjas) e suas habilidades (Jutsus), além de controlar atributos como o Chakra.
 
 Anexo 📎: [Naruto I 5.docx](https://docs.google.com/document/d/1YQYouhWhM5mtoP-J8timcW0Uet16gqTD/edit?usp=sharing&ouid=104271855318934537979&rtpof=true&sd=true)
+         [Naruto II 4.docx](https://docs.google.com/document/d/1SFXn7QyDcZWLbcuYUKzDZ7qZTotKPhHC/edit?usp=sharing&ouid=104271855318934537979&rtpof=true&sd=true)
 
 ---
 
