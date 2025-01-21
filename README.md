@@ -2,8 +2,21 @@
 
 Este repositório contém um projeto de implementação com Spring Boot que simula ninjas do universo de Naruto. Utilizando os conceitos de Programação Orientada a Objetos (POO), o sistema gerencia personagens (Ninjas) e suas habilidades (Jutsus), além de controlar atributos como o Chakra.
 
-Anexo 📎: [Naruto I 5.docx](https://docs.google.com/document/d/1YQYouhWhM5mtoP-J8timcW0Uet16gqTD/edit?usp=sharing&ouid=104271855318934537979&rtpof=true&sd=true)
+Anexo 📎: [Naruto I 5.docx](https://docs.google.com/document/d/1YQYouhWhM5mtoP-J8timcW0Uet16gqTD/edit?usp=sharing&ouid=104271855318934537979&rtpof=true&sd=true) ,
          [Naruto II 4.docx](https://docs.google.com/document/d/1SFXn7QyDcZWLbcuYUKzDZ7qZTotKPhHC/edit?usp=sharing&ouid=104271855318934537979&rtpof=true&sd=true)
+
+---
+
+# Sumário 📑
+- [Requisitos](#requisitos-)
+- [Funcionalidades](#funcionalidades-)
+- [Data Transfer Object (DTO)](#data-transfer-object-dto-)
+- [Testes](#testes-)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas-)
+- [Documentação da API com Swagger](#documentação-da-api-com-swagger-)
+- [Aplicação de CRUD no Projeto](#aplicação-de-crud-no-projeto-)
+- [Instruções para Rodar o Projeto](#instruções-para-rodar-o-projeto-)
+  
 
 ---
 
@@ -21,7 +34,7 @@ Anexo 📎: [Naruto I 5.docx](https://docs.google.com/document/d/1YQYouhWhM5mtoP
 
 ---
 
-## Funcionalidades 🛠️
+## Funcionalidades 🛠
 
 ### Funcionalidades Implementadas
 - **Gerenciar personagens (Ninjas)**: Criar, listar, buscar, atualizar e deletar ninjas.
@@ -98,7 +111,7 @@ E a especificação da API em formato JSON pode ser acessada em:
 
 ---
 
-## Estrutura do Projeto 🏗️
+## Estrutura do Projeto 🏗
 
 A estrutura do projeto está organizada da seguinte forma:
 
@@ -178,7 +191,7 @@ A aplicação implementa operações de CRUD (Create, Read, Update, Delete) para
    mvn clean install
    ```
 
-3. **Rodar o projeto ▶️** <br>
+3. **Rodar o projeto ▶** <br>
    Para rodar o projeto localmente, execute o seguinte comando:
    ```bash
    mvn spring-boot:run
