@@ -36,12 +36,24 @@ public class Jutsu {
         return dano;
     }
 
+    public void setDano(int dano) {
+        this.dano = dano;
+    }
+
     public int getConsumoDeChakra() {
         return consumoDeChakra;
     }
 
+    public void setConsumoDeChakra(int consumoDeChakra) {
+        this.consumoDeChakra = consumoDeChakra;
+    }
+
     public String getNome() {
         return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Personagem getPersonagem() {

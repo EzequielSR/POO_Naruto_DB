@@ -1,9 +1,8 @@
 package com.example.Naruto_DB.service;
 
 import com.example.Naruto_DB.jutsu.JutsuDTO;
-import com.example.Naruto_DB.personagem.PersonagemDTO;
-import com.example.Naruto_DB.jutsu.Jutsu;
 import com.example.Naruto_DB.personagem.Personagem;
+import com.example.Naruto_DB.personagem.PersonagemDTO;
 import com.example.Naruto_DB.repository.JutsuRepository;
 import com.example.Naruto_DB.repository.PersonagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,20 +29,6 @@ public class PersonagemService {
                 .collect(Collectors.toMap(JutsuDTO::getNome, jutsuDTO -> jutsuDTO)));
     }
 
-    public JutsuDTO criarJutsu(Long personagemId, JutsuDTO jutsuDTO) {
-        Personagem personagem = personagemRepository.findById(personagemId)
-                .orElseThrow(() -> new RuntimeException("Personagem não encontrado"));
-
-        Jutsu jutsu = new Jutsu(jutsuDTO.getNome(), jutsuDTO.getDano(), jutsuDTO.getConsumoDeChakra());
-
-        personagem.adicionarNovoJutsu(jutsu.getNome(), jutsu);
-
-        jutsuRepository.save(jutsu);
-
-        personagemRepository.save(personagem);
-
-        return new JutsuDTO(jutsuDTO.getId(), jutsuDTO.getNome(), jutsuDTO.getDano(), jutsuDTO.getConsumoDeChakra());
-    }
 
     public void alterarPersonagem(Long id, PersonagemDTO novosDados) {
         Personagem personagem = personagemRepository.findById(id)
@@ -57,18 +42,11 @@ public class PersonagemService {
 
     public boolean eliminarPersonagem(Long id) {
         Optional<Personagem> personagemOptional = personagemRepository.findById(id);
-        if(personagemOptional.isPresent()){
+        if (personagemOptional.isPresent()) {
             personagemRepository.deleteById(id);
             return true;
         }
         return false;
-    }
-
-    public void deletarJutsu(Long personagemId, String nomeJutsu) {
-        Personagem personagem = personagemRepository.findById(personagemId)
-                .orElseThrow(() -> new RuntimeException("Personagem não encontrado"));
-        personagem.getJutsus().remove(nomeJutsu);
-        personagemRepository.save(personagem);
     }
 
     public List<PersonagemDTO> listarPersonagens() {
