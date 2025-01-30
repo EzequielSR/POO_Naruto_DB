@@ -1,7 +1,7 @@
 package com.example.Naruto_DB.ninja;
 
-import com.example.Naruto_DB.entity.Jutsu;
-import com.example.Naruto_DB.entity.Personagem;
+import com.example.Naruto_DB.jutsu.Jutsu;
+import com.example.Naruto_DB.personagem.Personagem;
 
 import java.util.ArrayList;
 import java.util.List;

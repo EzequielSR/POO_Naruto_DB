@@ -1,4 +1,6 @@
-package com.example.Naruto_DB.dto;
+package com.example.Naruto_DB.personagem;
+
+import com.example.Naruto_DB.jutsu.JutsuDTO;
 
 import java.util.Map;
 

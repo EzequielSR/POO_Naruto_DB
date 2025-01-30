@@ -1,9 +1,9 @@
 package com.example.Naruto_DB.service;
 
-import com.example.Naruto_DB.dto.JutsuDTO;
-import com.example.Naruto_DB.dto.PersonagemDTO;
-import com.example.Naruto_DB.entity.Jutsu;
-import com.example.Naruto_DB.entity.Personagem;
+import com.example.Naruto_DB.jutsu.JutsuDTO;
+import com.example.Naruto_DB.personagem.PersonagemDTO;
+import com.example.Naruto_DB.jutsu.Jutsu;
+import com.example.Naruto_DB.personagem.Personagem;
 import com.example.Naruto_DB.repository.JutsuRepository;
 import com.example.Naruto_DB.repository.PersonagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,8 +55,13 @@ public class PersonagemService {
         personagemRepository.save(personagem);
     }
 
-    public void eliminarPersonagem(Long id) {
-        personagemRepository.deleteById(id);
+    public boolean eliminarPersonagem(Long id) {
+        Optional<Personagem> personagemOptional = personagemRepository.findById(id);
+        if(personagemOptional.isPresent()){
+            personagemRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     public void deletarJutsu(Long personagemId, String nomeJutsu) {

@@ -1,5 +1,6 @@
-package com.example.Naruto_DB.entity;
+package com.example.Naruto_DB.personagem;
 
+import com.example.Naruto_DB.jutsu.Jutsu;
 import jakarta.persistence.*;
 
 import java.util.HashMap;

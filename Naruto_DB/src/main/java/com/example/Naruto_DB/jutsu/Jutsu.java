@@ -1,5 +1,6 @@
-package com.example.Naruto_DB.entity;
+package com.example.Naruto_DB.jutsu;
 
+import com.example.Naruto_DB.personagem.Personagem;
 import jakarta.persistence.*;
 
 @Entity

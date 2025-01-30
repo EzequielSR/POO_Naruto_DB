@@ -1,7 +1,7 @@
 package com.example.Naruto_DB.controller;
 
-import com.example.Naruto_DB.dto.JutsuDTO;
-import com.example.Naruto_DB.dto.PersonagemDTO;
+import com.example.Naruto_DB.jutsu.JutsuDTO;
+import com.example.Naruto_DB.personagem.PersonagemDTO;
 import com.example.Naruto_DB.service.PersonagemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -48,9 +48,11 @@ public class PersonagemController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarPersonagem(@PathVariable Long id) {
-        personagemService.eliminarPersonagem(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> eliminarPersonagem(@PathVariable Long id) {
+        if( personagemService.eliminarPersonagem(id)){
+            return ResponseEntity.ok("Personagem com ID " + id + " foi excluído com sucesso!");
+        };
+        return ResponseEntity.status(404).body("Personagem com ID " + id + " não encontrado.");
     }
 
     @DeleteMapping("/{personagemId}/jutsus/{nomeJutsu}")

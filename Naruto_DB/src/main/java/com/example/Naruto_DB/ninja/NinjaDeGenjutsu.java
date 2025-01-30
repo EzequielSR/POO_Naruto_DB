@@ -1,6 +1,6 @@
 package com.example.Naruto_DB.ninja;
 
-import com.example.Naruto_DB.entity.Personagem;
+import com.example.Naruto_DB.personagem.Personagem;
 
 public class NinjaDeGenjutsu extends Personagem implements Ninja {
     public NinjaDeGenjutsu(String nome, int idade, String aldeia, int vida) {

@@ -2,8 +2,8 @@ package com.example.Naruto_DB;
 
 
 import com.example.Naruto_DB.controller.PersonagemController;
-import com.example.Naruto_DB.dto.JutsuDTO;
-import com.example.Naruto_DB.dto.PersonagemDTO;
+import com.example.Naruto_DB.jutsu.JutsuDTO;
+import com.example.Naruto_DB.personagem.PersonagemDTO;
 import com.example.Naruto_DB.service.PersonagemService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.example.Naruto_DB.dto;
+package com.example.Naruto_DB.jutsu;
 
 public class JutsuDTO {
     private Long id;
