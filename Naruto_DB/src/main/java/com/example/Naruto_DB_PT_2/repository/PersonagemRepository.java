@@ -1,0 +1,8 @@
+package com.example.Naruto_DB_PT_2.repository;
+
+import com.example.Naruto_DB_PT_2.personagem.Personagem;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PersonagemRepository extends JpaRepository<Personagem, Long> {
+}
+

@@ -1,12 +1,12 @@
 package com.example.Naruto_DB;
 
-import com.example.Naruto_DB.jutsu.JutsuDTO;
-import com.example.Naruto_DB.personagem.PersonagemDTO;
-import com.example.Naruto_DB.jutsu.Jutsu;
-import com.example.Naruto_DB.personagem.Personagem;
-import com.example.Naruto_DB.repository.JutsuRepository;
-import com.example.Naruto_DB.repository.PersonagemRepository;
-import com.example.Naruto_DB.service.PersonagemService;
+import com.example.Naruto_DB_PT_2.jutsu.JutsuDTO;
+import com.example.Naruto_DB_PT_2.personagem.PersonagemDTO;
+import com.example.Naruto_DB_PT_2.jutsu.Jutsu;
+import com.example.Naruto_DB_PT_2.personagem.Personagem;
+import com.example.Naruto_DB_PT_2.repository.JutsuRepository;
+import com.example.Naruto_DB_PT_2.repository.PersonagemRepository;
+import com.example.Naruto_DB_PT_2.service.PersonagemService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

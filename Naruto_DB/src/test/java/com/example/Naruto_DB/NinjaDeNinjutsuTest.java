@@ -1,7 +1,7 @@
 package com.example.Naruto_DB;
 
-import com.example.Naruto_DB.jutsu.Jutsu;
-import com.example.Naruto_DB.ninja.NinjaDeNinjutsu;
+import com.example.Naruto_DB_PT_2.jutsu.Jutsu;
+import com.example.Naruto_DB_PT_2.ninja.NinjaDeNinjutsu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
