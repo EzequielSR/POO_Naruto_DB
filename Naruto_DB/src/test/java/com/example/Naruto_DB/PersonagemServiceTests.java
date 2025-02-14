@@ -1,11 +1,11 @@
 package com.example.Naruto_DB;
 
 import com.example.Naruto_DB_PT_2.jutsu.JutsuDTO;
-import com.example.Naruto_DB_PT_2.personagem.PersonagemDTO;
-import com.example.Naruto_DB_PT_2.jutsu.Jutsu;
 import com.example.Naruto_DB_PT_2.personagem.Personagem;
+import com.example.Naruto_DB_PT_2.personagem.PersonagemDTO;
 import com.example.Naruto_DB_PT_2.repository.JutsuRepository;
 import com.example.Naruto_DB_PT_2.repository.PersonagemRepository;
+import com.example.Naruto_DB_PT_2.service.JutsuService;
 import com.example.Naruto_DB_PT_2.service.PersonagemService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,6 +29,8 @@ public class PersonagemServiceTests {
 
     @InjectMocks
     private PersonagemService personagemService;
+
+    private JutsuService jutsuService;
 
 
     @Test
@@ -107,24 +109,5 @@ public class PersonagemServiceTests {
         personagemService.eliminarPersonagem(id);
 
         verify(personagemRepository, times(1)).deleteById(id);
-    }
-
-    @Test
-    public void testCriarJutsu() {
-        JutsuDTO jutsuDTO = new JutsuDTO(null, "Rasengan", 30, 10);
-
-        Personagem personagem = new Personagem("Naruto", 16, "Konoha", 100);
-        when(personagemRepository.findById(1L)).thenReturn(Optional.of(personagem));
-
-        Jutsu jutsu = new Jutsu("Rasengan", 30, 10);
-        when(jutsuRepository.save(any(Jutsu.class))).thenReturn(jutsu);
-
-        JutsuDTO resultado = personagemService.criarJutsu(1L, jutsuDTO);
-
-        assertEquals("Rasengan", resultado.getNome());
-        assertEquals(30, resultado.getDano());
-        assertEquals(10, resultado.getConsumoDeChakra());
-        verify(jutsuRepository, times(1)).save(any(Jutsu.class));
-        verify(personagemRepository, times(1)).save(any(Personagem.class));
     }
 }
