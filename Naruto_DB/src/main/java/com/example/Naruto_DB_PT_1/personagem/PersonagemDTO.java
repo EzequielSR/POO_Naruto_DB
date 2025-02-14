@@ -25,7 +25,6 @@ public class PersonagemDTO {
         this.jutsus = jutsus;
     }
 
-
     public Long getId() {
         return id;
     }
@@ -80,10 +79,6 @@ public class PersonagemDTO {
 
     public void setJutsus(List<JutsuDTO> jutsus) {
         this.jutsus = jutsus;
-    }
-
-    public void atualizarChakra(int novoChakra){
-        this.chakra = novoChakra;
     }
 
     public PersonagemDTO() {}

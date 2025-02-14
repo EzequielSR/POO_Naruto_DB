@@ -43,6 +43,17 @@ public class PersonagemController {
         personagemService.alterarPersonagem(id, novosDados);
         return ResponseEntity.ok(novosDados);
     }
+    @Operation(summary = "Editar o Chakra do Personagem pelo ID", description = "Busca o ID do Personagem e atualiza o chakra com o limite de 100")
+    @PutMapping("/{id}/atualizar-chakra")
+    public ResponseEntity<String> autualizarChakra(@PathVariable Long id, @RequestParam int novoChakra){
+        try{
+            personagemService.atualizarChakra(id,novoChakra);
+            return  ResponseEntity.ok("Chakra do personagem atualizado com sucesso!");
+        }catch (RuntimeException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 
     @Operation(summary = "Deletar Personagem pelo ID", description = "Exclui Personagem do sistema pelo ID")
     @DeleteMapping("/{id}")

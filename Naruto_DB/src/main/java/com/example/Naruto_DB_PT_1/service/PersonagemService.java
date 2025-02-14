@@ -1,15 +1,17 @@
 package com.example.Naruto_DB_PT_1.service;
 
+import com.example.Naruto_DB_PT_1.jutsu.Jutsu;
 import com.example.Naruto_DB_PT_1.jutsu.JutsuDTO;
 import com.example.Naruto_DB_PT_1.personagem.Personagem;
 import com.example.Naruto_DB_PT_1.personagem.PersonagemDTO;
 import com.example.Naruto_DB_PT_1.repository.JutsuRepository;
 import com.example.Naruto_DB_PT_1.repository.PersonagemRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -21,14 +23,31 @@ public class PersonagemService {
     @Autowired
     private JutsuRepository jutsuRepository;
 
-    public PersonagemDTO criarPersonagem(PersonagemDTO personagemDTO) {
-        Personagem personagem = new Personagem(
-                personagemDTO.getNome(),
-                personagemDTO.getIdade(),
-                personagemDTO.getAldeia(),
-                personagemDTO.getVida()
-        );
+    private List<JutsuDTO> converterJutsusParaDTO(List<Jutsu> jutsus) {
+        if (jutsus == null) {
+            return Collections.emptyList();
+        }
+        return jutsus.stream()
+                .map(jutsu -> new JutsuDTO(
+                        jutsu.getId(),
+                        jutsu.getNome(),
+                        jutsu.getDano(),
+                        jutsu.getConsumoDeChakra()
+                ))
+                .collect(Collectors.toList());
+    }
+
+    public PersonagemDTO criarPersonagem(PersonagemDTO personagemDTO){
+        Personagem personagem = new Personagem(personagemDTO.getNome(), personagemDTO.getIdade(), personagemDTO.getAldeia(), personagemDTO.getChakra(), personagemDTO.getVida());
         Personagem novoPersonagem = personagemRepository.save(personagem);
+        List<JutsuDTO> jutsusDTO = novoPersonagem.getJutsus().stream()
+                .map(jutsu -> new JutsuDTO(
+                        jutsu.getId(),
+                        jutsu.getNome(),
+                        jutsu.getDano(),
+                        jutsu.getConsumoDeChakra()
+                ))
+                .collect(Collectors.toList());
         return new PersonagemDTO(
                 novoPersonagem.getId(),
                 novoPersonagem.getNome(),
@@ -36,14 +55,7 @@ public class PersonagemService {
                 novoPersonagem.getAldeia(),
                 novoPersonagem.getChakra(),
                 novoPersonagem.getVida(),
-                novoPersonagem.getJutsus().stream() // Converte List<Jutsu> para List<JutsuDTO>
-                        .map(jutsu -> new JutsuDTO(
-                                jutsu.getId(),
-                                jutsu.getNome(),
-                                jutsu.getDano(),
-                                jutsu.getConsumoDeChakra()
-                        ))
-                        .collect(Collectors.toList())
+                jutsusDTO
         );
     }
 
@@ -82,16 +94,9 @@ public class PersonagemService {
                         p.getAldeia(),
                         p.getChakra(),
                         p.getVida(),
-                        p.getJutsus().stream() // Converte List<Jutsu> para List<JutsuDTO>
-                                .map(jutsu -> new JutsuDTO(
-                                        jutsu.getId(),
-                                        jutsu.getNome(),
-                                        jutsu.getDano(),
-                                        jutsu.getConsumoDeChakra()
-                                ))
-                                .collect(Collectors.toList())
-                ))
-                .collect(Collectors.toList());
+                        converterJutsusParaDTO(p.getJutsus())
+                        )
+                ).collect(Collectors.toList());
     }
 
     public PersonagemDTO buscarPersonagemPorId(Long id) {
@@ -103,14 +108,7 @@ public class PersonagemService {
                         personagem.getAldeia(),
                         personagem.getChakra(),
                         personagem.getVida(),
-                        personagem.getJutsus().stream() // Converte List<Jutsu> para List<JutsuDTO>
-                                .map(jutsu -> new JutsuDTO(
-                                        jutsu.getId(),
-                                        jutsu.getNome(),
-                                        jutsu.getDano(),
-                                        jutsu.getConsumoDeChakra()
-                                ))
-                                .collect(Collectors.toList())
+                        converterJutsusParaDTO(personagem.getJutsus())
                 ))
                 .orElse(null);
     }

@@ -24,17 +24,21 @@ public class Personagem {
 
     public Personagem(){}
 
-    public Personagem(Long id, String nome, int idade, String aldeia, int chakra, int vida, List<Jutsu> jutsus) {
-        this.id = id;
+    public Personagem(String nome, int idade, String aldeia, int vida) {
+        this();
+        this.nome = nome;
+        this.idade = idade;
+        this.aldeia = aldeia;
+        this.vida = vida;
+    }
+
+    public Personagem(String nome, int idade, String aldeia, int chakra, int vida) {
+        this();
         this.nome = nome;
         this.idade = idade;
         this.aldeia = aldeia;
         this.chakra = chakra;
         this.vida = vida;
-        this.jutsus = jutsus;
-    }
-
-    public Personagem(String nome, int idade, String aldeia, int vida) {
     }
 
 
@@ -132,7 +136,7 @@ public class Personagem {
     }
 
     public List<Jutsu> getJutsus() {
-        return jutsus;
+        return new ArrayList<>(jutsus);
     }
 
 
@@ -142,8 +146,6 @@ public class Personagem {
         }
         this.chakra = Math.min(chakra, 100);
     }
-
-
 
     public void exibirAsInformacoes() {
         System.out.println("Nome: " + nome);
